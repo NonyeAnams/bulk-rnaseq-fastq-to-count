@@ -1,0 +1,21 @@
+# Raw sequencing data
+data/raw/
+
+# Downloaded and generated reference files
+reference/gencode19/*.gz
+
+# Salmon index
+reference/gencode19/salmon_index_gencode19/
+
+# R temporary and session files
+.Rhistory
+.RData
+.Rproj.user/
+
+# Python temporary files
+__pycache__/
+.ipynb_checkpoints/
+
+# Operating system files
+.DS_Store
+Thumbs.db

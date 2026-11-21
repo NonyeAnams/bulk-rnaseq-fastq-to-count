@@ -1,0 +1,12 @@
+name: rnaseq-processing
+
+channels:
+  - conda-forge
+  - bioconda
+
+dependencies:
+  - r-base=4.5.3
+  - bioconductor-tximport=1.38.2
+  - fastqc=0.13.0
+  - salmon=2.9.0
+  - sra-tools=3.4.1
