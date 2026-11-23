@@ -2,67 +2,35 @@
 
 ## Dataset
 
-The sequencing data used in this project were obtained from the NCBI Sequence Read Archive (SRA), associated with GEO dataset **GSE155432**.
+Sequencing data were obtained from [GEO: GSE155432](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE155432), a study of neuronal differentiation in human SH-SY5Y neuroblastoma cells.
 
-The study investigates changes in mRNA poly(A) tails and 3′ untranslated regions during neuronal differentiation using human SH-SY5Y neuroblastoma cells.
+Six single-end RNA-seq runs were used:
 
-### Selected sample
-
-| Attribute | Information |
+| Condition | SRA accessions |
 |---|---|
-| GEO accession | GSE155432 |
-| GEO sample | GSM4704322 |
-| SRA experiment | SRX8851834 |
-| SRA run | SRR12352387 |
-| Organism | Homo sapiens |
-| Cell line | SH-SY5Y |
-| Condition | Undifferentiated |
-| Sequencing platform | Illumina NextSeq 500 |
-| Library layout | Single-end |
-| Library selection | Poly(A)-selected mRNA |
+| Undifferentiated | SRR12352385, SRR12352386, SRR12352387 |
+| Differentiated | SRR12352388, SRR12352389, SRR12352390 |
+
+The libraries are poly(A)-selected and were sequenced using Illumina NextSeq 500.
 
 ## Subsampling
 
-The original SRA run contains approximately 25.8 million spots.
+The first **50,000 reads** from each run were retrieved using the NCBI SRA Toolkit.
 
-For this computational demonstration, only the first 50,000 spots were retrieved using the NCBI SRA Toolkit.
+These are sequential subsets, not random samples of the original sequencing libraries. They are intended for demonstrating the processing workflow, not for biological inference.
 
-This was a sequential subset, not random sampling.
+## Downloading
 
-The resulting compressed FASTQ file is:
-
-`data/raw/SRR12352387.fastq.gz`
-
-The FASTQ file is excluded from Git version control because raw sequencing data should be retrieved from the original public repository when reproducing the workflow.
-
-## Downloading the data
-
-The FASTQ subset can be retrieved using:
+From the project root, run:
 
 ```bash
-fastq-dump \
-    --accession SRR12352387 \
-    --minSpotId 1 \
-    --maxSpotId 50000 \
-    --gzip \
-    --outdir data/raw
+bash scripts/01_download_reads.sh
 ```
 
-Alternatively, execute the project script:
+FASTQ files are saved in `data/raw/` and excluded from Git version control.
 
-```bash
-./scripts/01_download_reads.sh
-```
+## Data resources
 
-## Important considerations
-
-- Only one sequencing run was processed.
-- Only the first 50,000 spots were retrieved.
-- The subset is intended to demonstrate the processing workflow, not to provide a representative expression profile.
-- The original sequencing run contains substantially more reads than the subset analysed here.
-
-## Data access
-
-- GEO dataset: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE155432
-- SRA run: https://www.ncbi.nlm.nih.gov/sra/?term=SRR12352387
-- SRA Toolkit: https://github.com/ncbi/sra-tools
+- [GEO dataset GSE155432](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE155432)
+- [NCBI SRA](https://www.ncbi.nlm.nih.gov/sra)
+- [SRA Toolkit](https://github.com/ncbi/sra-tools)

@@ -1,40 +1,44 @@
 # Software Environment
 
-## Environment specification
+## Environment
 
-The RNA-seq processing workflow was developed and tested using Conda on Ubuntu 24.04.1 LTS under WSL2.
+The workflow was developed using Conda on Ubuntu 24.04.1 LTS under WSL2.
 
-The file `environment.yml` specifies the main software dependencies and versions used in the project.
-
-## Main software
+The `environment.yml` file specifies the main software dependencies.
 
 | Software | Version | Purpose |
 |---|---:|---|
-| R | 4.5.3 | Gene-level import and matrix generation |
+| R | 4.5.3 | Gene-level matrix generation |
 | tximport | 1.38.2 | Transcript-to-gene summarisation |
-| FastQC | 0.13.0 | Raw-read quality control |
 | Salmon | 2.9.0 | Transcript quantification |
-| SRA Toolkit | 3.4.1 | Retrieval of sequencing reads |
+| FastQC | 0.13.0 | Read quality control |
+| SRA Toolkit | 3.4.1 | FASTQ retrieval |
 
-## Recreating the environment
+MultiQC 1.35 is installed in a separate Conda environment.
 
-From the project root, create the Conda environment with:
+## Setup
+
+Create and activate the main environment:
 
 ```bash
 conda env create -f environment/environment.yml
-```
-
-Activate it:
-
-```bash
 conda activate rnaseq-processing
 ```
 
-The pipeline scripts can then be executed in the order described in the main project README.
+Create the separate MultiQC environment:
 
-## Reproducibility notes
+```bash
+conda create -n multiqc-env -c conda-forge -c bioconda multiqc=1.35
+```
 
-- The environment specification records the direct software dependencies and their versions.
-- Conda may resolve different compatible transitive dependencies over time.
-- The original analysis was performed on Ubuntu 24.04.1 LTS using WSL2.
-- The file `sessionInfo.txt` records the R session and package information from the original analysis.
+Run MultiQC with:
+
+```bash
+conda run -n multiqc-env multiqc results/qc/ -o results/qc/
+```
+
+## Reproducibility
+
+The file `sessionInfo.txt` records the R version, platform and package information from the analysis.
+
+Conda dependency resolution may produce different compatible transitive package versions over time.

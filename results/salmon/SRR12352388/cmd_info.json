@@ -1,0 +1,13 @@
+{
+  "salmon_version": "2.9.0",
+  "index": "reference/gencode19/salmon_index_gencode19",
+  "libType": "A",
+  "output": "results/salmon/SRR12352388",
+  "mates1": [],
+  "mates2": [],
+  "unmatedReads": [
+    "data/raw/SRR12352388.fastq.gz"
+  ],
+  "threads": 4,
+  "sketch": false
+}

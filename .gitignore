@@ -1,11 +1,26 @@
 # Raw sequencing data
 data/raw/
 
-# Downloaded and generated reference files
+# Downloaded reference files
 reference/gencode19/*.gz
 
 # Salmon index
 reference/gencode19/salmon_index_gencode19/
+
+# FastQC compressed reports (HTML reports are retained)
+results/qc/*_fastqc.zip
+
+# MultiQC intermediate data
+results/qc/multiqc_report_data/
+
+# Salmon auxiliary files
+results/salmon/*/aux_info/*
+!results/salmon/*/aux_info/meta_info.json
+
+# Salmon logs and additional intermediate files
+results/salmon/*/logs/
+results/salmon/*/libParams/
+results/salmon/*/lib_format_counts.json
 
 # R temporary and session files
 .Rhistory
